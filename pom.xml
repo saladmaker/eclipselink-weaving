@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.khaled.plugins.weaving</groupId>
+    <artifactId>eclipselink-weaving</artifactId>
+    <version>1.0.0</version>
+    <packaging>maven-plugin</packaging>
+    <description>a simple plugin for eclipse static weaving during build time.</description>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+        <jpa.eclispelinkprovider.version>4.0.0</jpa.eclispelinkprovider.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <scope>provided</scope>
+            <version>3.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-tools-api</artifactId>
+            <scope>provided</scope>
+            <version>3.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa</artifactId>
+            <version>${jpa.eclispelinkprovider.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.persistence</groupId>
+                    <artifactId>jakarta-persistence-api</artifactId>
+                </exclusion>
+            </exclusions>        
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>3.7.0</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
